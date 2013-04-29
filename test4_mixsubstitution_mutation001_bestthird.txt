@@ -1,0 +1,26 @@
+    def substritutePopulation(self, population, children):
+        # asc sort population
+        for itr1 in range(len(population)):
+            for itr2 in range(itr1 + 1, len(population)):
+                if self.fitness(population[itr1]) > self.fitness(population[itr2]):
+                    population[itr1], population[itr2] = population[itr2], population[itr1]
+
+        # desc sort population
+        for itr1 in range(len(children)):
+            for itr2 in range(itr1 + 1, len(children)):
+                if self.fitness(children[itr1]) < self.fitness(children[itr2]):
+                    children[itr1], children[itr2] = children[itr2], children[itr1]
+
+        # mix old and new generation
+        for itr in range(len(children)):
+            if self.fitness(population[itr]) < self.fitness(children[itr]):
+                population[itr] = children[itr]
+            else:
+                break
+
+
+0 13458.8007144	180.095000029secs
+(max)1 13785.9139034	181.152999878secs
+2 13502.9030844	180.304999828secs
+(min)3 12210.6803957	180.464999914secs
+4 13371.1507122	181.500999928secs
